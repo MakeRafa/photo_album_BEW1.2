@@ -1,11 +1,10 @@
-from flask import Blueprint, request, render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import Blueprint, render_template, redirect, url_for, flash
 
-from datetime import date, datetime
-
-from photoalbum_app import app, db, bcrypt
+from photoalbum_app import app, db
 
 from photoalbum_app.main.forms import AlbumForm, PhotoForm
+from photoalbum_app.models import Album, Photo
+
 main = Blueprint('main', __name__)
 
 # Create your routes here.
@@ -27,4 +26,20 @@ def create_album():
         db.session.commit()
         flash('Your new album has been added!')
 
-        return redirect(url_for())
+        return redirect(url_for('main.album_info', album_id=new_album.id))
+    return render_template('create_album.html', form=form)
+
+def album_info(album_id):
+    album = Album.query.get(album_id)
+
+    form = AlbumForm(obj=album)
+
+    if form.validate_on_submit():
+        album.title = form.title.data
+        album.description = form.description.data
+
+        db.session.commit()
+        flash('Your Album has been updated!')
+
+        return redirect(url_for('main.album_info', album_id=album.id))        
+    return render_template('album_info.html', album=album, form=form)

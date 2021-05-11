@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Album</h1>
+
+<form action="{{url_for('main.album_info')}}" method="POST">
+    {{form.csrf_token}}
+    <fieldset>
+        <legend>
+            Enter Your Album information below
+        </legend>
+        {{form..label}}
+        {{form.}}
+    </fieldset>
+
+
+</form>
+
+{% endblock %}
