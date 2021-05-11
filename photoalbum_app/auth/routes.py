@@ -1,8 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
-from app.models import User, Album, Photo
-from app.auth.forms import SignUpForm, LoginForm
+from photoalbum_app.models import User, Album, Photo
+from photoalbum_app.auth.forms import SignUpForm, LoginForm
 
 from app import app, db, bcrypt
 
