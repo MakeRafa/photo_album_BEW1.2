@@ -1,11 +1,10 @@
 from sqlalchemy_utils import URLType
 
-from sqlalchemy.orm import backref
+# from sqlalchemy.orm import backref
 
 from flask_login import UserMixin
 
-from app import db
-from photoalbum_app.utils import FormEnum
+from photoalbum_app import db
 # Create your models here.
 class User(UserMixin, db.Model):
     """User Model"""
@@ -20,7 +19,14 @@ class Album(db.Model):
     title = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(200), nullable=False)
 
-    # photos = db.relationship()
+    """ Relationship """
+    photos = db.relationship('Photo', back_populates='album')
+
+    """ Relationship """
+    created_by = db.relationship('User')
+
+    """Foreign Key"""
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Photo(db.Model):
     """Photo Model"""
@@ -29,4 +35,24 @@ class Photo(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     small_description = db.Column(db.String(200), nullable=False)
     location = db.Column(db.String(100), nullable=False)
+    photo_url = db.Column(URLType)
 
+    ##########################################
+    #     User Relationship/Foreign Key      #
+    ##########################################
+
+    """ Relationship """
+    created_by = db.relationship('User')
+
+    """Foreign Key"""
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    ##########################################
+    #    Album Relationship/Foreign Key      #
+    ##########################################
+    """Foreign Key"""
+    album_id = db.Column(db.Integer, db.ForeignKey('unique_album.id'), nullable=False)
+
+    """Relationship"""
+    album = db.relationship('Album', back_populates='photos')
+    

@@ -14,7 +14,8 @@ class AlbumForm(FlaskForm):
 class PhotoForm(FlaskForm):
     """Album Form for created new Albums"""
     name = StringField("Name", validators=[DataRequired(), Length(max=20)])
+    photo_url = StringField("Photo URL", validators=[URL(require_tld=True)])
     location = StringField("Location", validators=[DataRequired(), Length(min=5, max=100)])
-    date = DateField("Date")
-    small_description = StringField("Small Description", validators=[DataRequired(), Length(min=5, max=200)])
+    date = DateField("Date", format= '%Y-%m-%d')
+    small_description = StringField("Small Description", validators=[DataRequired(), Length(min=5, max=100)])
     submit = SubmitField("Submit")
