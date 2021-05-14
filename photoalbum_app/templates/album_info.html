@@ -7,19 +7,19 @@
 
 <h2>Photos:</h2>
 
-{{% for photo in album.photos %}}
+{% for photo in album.photos %}
 <div class="photos">
     <div class="photo_details">
 
         <a href="/photo/{{photo.id}}">
             <p>{{ photo.name }}</p>
-            <img src="{{ photo.photo_url }}" alt="{{ photo.name }}" length="175" width="200">
+            <img src="{{ photo.photo_url }}" alt="{{ photo.name }}" width="100">
         </a>
-        <p>Desciption: {{photo.description}}</p>
-
+        <p>Description: {{ photo.small_description }}</p>
+        <p>Location: {{ photo.location }}</p>
     </div>
 </div>
-{{ %endfor %}}
+{% endfor %}
 
 <h1>Edit Your Album</h1>
 

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Photo:{{ photo.name }}</h1>
+<p><img src="{{ photo.photo_url }}" width="200"></p>
+<p>Desciption: {{ photo.small_description }}</p>
+<p>Taken: {{ photo.date}}</p>
+<p>Located: {{photo.location}}</p>
+
+<p>Edit Photo</p>
+
+<form method='POST' action="{{url_for('main.photo_info', photo_id=photo.id)}}">
+    {{form.csrf_token}}
+    <fieldset>
+        <legend>
+            Update information below:
+        </legend>
+        {{form.name.label}}
+        {{form.name}}
+
+        {{form.photo_url.label}}
+        {{form.photo_url}}
+
+        {{form.album.label}}
+        {{form.album}}
+
+        {{form.date.label}}
+        {{form.date}}
+
+        {{form.small_description.label}}
+        {{form.small_description}}
+
+        {{form.location.label}}
+        {{form.location}}
+
+        {{form.submit}}
+    </fieldset>
+</form>
+
+{% endblock %}
