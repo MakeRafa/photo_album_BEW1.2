@@ -13,7 +13,7 @@ def homepage():
     all_albums = Album.query.all()
     return render_template('home.html', all_albums=all_albums)
 
-@main.route('/create_album')
+@main.route('/create_album', methods=['GET', 'POST'])
 def create_album():
     form = AlbumForm()
 
@@ -30,6 +30,7 @@ def create_album():
         return redirect(url_for('main.album_info', album_id=new_album.id))
     return render_template('create_album.html', form=form)
 
+@main.route('/album/<album_id>', methods=['GET', 'POST'])
 def album_info(album_id):
     album = Album.query.get(album_id)
 

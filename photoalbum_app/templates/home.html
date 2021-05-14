@@ -3,8 +3,15 @@
 
 <h1>Photo Album Website</h1>
 
-<h2>All Photo Albums</h2>
+<h2>Your Albums:</h2>
 
-{% for album in %}
+{% for album in all_albums%}
+
+<div class="album">
+    <a href="/album/{{ album.id }}">{{ album.title }}</a>
+    {{ album.photos|length }} photos in album
+    
+    <p>Description: {{ album.description }}</p>
+</div>
 
 {% endblock %}
