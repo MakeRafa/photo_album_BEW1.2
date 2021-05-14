@@ -1,7 +1,5 @@
 from sqlalchemy_utils import URLType
 
-# from sqlalchemy.orm import backref
-
 from flask_login import UserMixin
 
 from photoalbum_app import db

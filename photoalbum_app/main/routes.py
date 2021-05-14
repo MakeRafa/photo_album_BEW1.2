@@ -10,7 +10,8 @@ main = Blueprint('main', __name__)
 # Create your routes here.
 @main.route('/')
 def homepage():
-    pass
+    all_albums = Album.query.all()
+    return render_template('home.html', all_albums=all_albums)
 
 @main.route('/create_album')
 def create_album():

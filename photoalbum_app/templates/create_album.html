@@ -3,17 +3,19 @@
 
 <h1>Album</h1>
 
-<form action="{{url_for('main.album_info')}}" method="POST">
+<form action="{{url_for('main.create_album')}}" method="POST">
     {{form.csrf_token}}
     <fieldset>
         <legend>
             Enter Your Album information below
         </legend>
-        {{form..label}}
-        {{form.}}
+        {{form.title.label}}
+        {{form.title}}
+
+        {{form.description.label}}
+        {{form.description}}
+
+        {{form.submit}}
     </fieldset>
-
-
 </form>
-
 {% endblock %}

@@ -3,4 +3,38 @@
 
 <h1>{{album.title}}</h1>
 
+<h2>Desciption: {{album.description}}</h2>
+
+<h2>Photos:</h2>
+
+{{% for photo in album.photos %}}
+<div class="photos">
+    <div class="photo_details">
+
+        <a href="/photo/{{photo.id}}">
+            <p>{{ photo.name }}</p>
+            <img src="{{ photo.photo_url }}" alt="{{ photo.name }}" length="175" width="200">
+        </a>
+        <p>Desciption: {{photo.description}}</p>
+
+    </div>
+</div>
+{{ %endfor %}}
+
+<h1>Edit Your Album</h1>
+
+<form action="{{url_for('main.album_info', album_id=album.id)}}">
+    {{form.csrf_token}}
+    <fieldset>
+        <legend>Make Your Changes Below</legend>
+        {{form.title.label}}
+        {{form.title}}
+
+        {{form.description.label}}
+        {{form.description}}
+
+        {{form.submit}}
+    </fieldset>
+</form>
+
 {% endblock %}
