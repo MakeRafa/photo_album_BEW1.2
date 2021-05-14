@@ -13,14 +13,14 @@ auth = Blueprint('auth', __name__)
 # Create your routes here.
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
-    form = SignUpForm
+    form = SignUpForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).encode('utf-8')
         user = User(
             username=form.username.data,
             password=hashed_password
         )
-        db.session.add()
+        db.session.add(user)
         db.session.commit()
         flash('Account Has Been Created!')
         return redirect(url_for('auth.login'))
