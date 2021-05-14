@@ -14,7 +14,7 @@
                     
                     {% for message in get_flashed_messages() %}
                         <legend>{{message}}</legend>
-                    {{% enfor %}}
+                    {% endfor %}
 
                     {% if current_user.is_authenticated %}
                     <a href="/logout">Login</a>

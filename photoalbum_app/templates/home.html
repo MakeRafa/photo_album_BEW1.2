@@ -10,8 +10,8 @@
 <div class="album">
     <a href="/album/{{ album.id }}">{{ album.title }}</a>
     {{ album.photos|length }} photos in album
-    
+
     <p>Description: {{ album.description }}</p>
 </div>
-
+{% endfor %}
 {% endblock %}

@@ -49,7 +49,7 @@ class Photo(db.Model):
     #    Album Relationship/Foreign Key      #
     ##########################################
     """Foreign Key"""
-    album_id = db.Column(db.Integer, db.ForeignKey('unique_album.id'), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey('album.id'), nullable=False)
 
     """Relationship"""
     album = db.relationship('Album', back_populates='photos')
