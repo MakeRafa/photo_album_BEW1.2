@@ -9,13 +9,13 @@
         <!-- Add base html here. -->
         <div id="main">
             <nav>
-                <a href="/">Home Page</a>
+                
                 <div>
                     
                     {% for message in get_flashed_messages() %}
                         <legend>{{message}}</legend>
                     {% endfor %}
-
+                    <a href="/">Home Page</a>
                     {% if current_user.is_authenticated %}
                     <a href="/logout">Log Out</a>
                     <a href="/create_album">Create Album</a>
