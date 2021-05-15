@@ -15,7 +15,7 @@ auth = Blueprint('auth', __name__)
 def signup():
     form = SignUpForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).encode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(
             username=form.username.data,
             password=hashed_password
